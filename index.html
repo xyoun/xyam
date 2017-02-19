@@ -1,0 +1,593 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Yang&#39;s Blog | for anything.</title>
+
+  
+  <meta name="author" content="Yang">
+  
+
+  
+
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  
+
+  <meta property="og:site_name" content="Yang&#39;s Blog"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Yang&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">Yang&#39;s Blog</a>
+    </h1>
+    <p class="site-description">for anything.</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/2017/01/28/https/"><span>知乎都全站 HTTPS 好久了, 你还好意思不懂 HTTPS?</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2017/01/28/https/" rel="bookmark">
+        <time class="entry-date published" datetime="2017-01-28T05:05:43.000Z">
+          2017-01-28
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>推广 HTTPS 的道路从来都不是一帆风顺的，国外的互联网大头貌似都在飞快地推行着而且基本都已经实现全站了，国内推广的速度反而像蜗牛一样。BAT 也就阿里上了全站 HTTPS，百度也开始逐步迈向 HTTPS 的行列，像百度图片还没有。我也就不喷国内某大型社交网站登陆账号用的是 HTTP + GET 的方式请求了，虽然加了校验，但是还是有风险。</p>
+<p>上全站 HTTPS 的流程大概是这样的：</p>
+<h2 id="买证书啊"><a href="#买证书啊" class="headerlink" title="买证书啊"></a>买证书啊</h2><p>中国的一个叫 WoSign 的 CA 之前给一个 <a href="http://schrauger.github.com/">schrauger.github.com</a> 生成了一个 *.github.com 的 SSL，然后还有一个月内生成了几百个相同序列号的证书。Firefox 脑袋一拍，决定从 2016 年 10月份把它从信任 CA 列表中除名。对 WoSign 感兴趣？这里：<a href="https://wiki.mozilla.org/CA%3AWoSign_Issues">CA:WoSign Issues</a>，你也可以点上面那个 github 的地址，第一篇就是：The story of how WoSign gave me an SSL certificate for GitHub.com。<br>所以你需要考虑到底是用国内的还是国外的。就安全性来说当然是 GeoTrust 是最靠谱的，但是贵呀。如果你的企业有一定的背景，说不定还不让用国外的产品。</p>
+<p>So… 如果你网管不小心配错了证书，但是你又开了 HTTPS 的端口，会这样：<br><img src="/images/v2-49d7311951dd4792b797dcf04f2a1bd0_b.jpg" class="center" width="400"><br>或者这样：<br><img src="/images/v2-09533ab672b8861dfd93dc48d14d4ab4_b.jpg" class="center" width="400"></p>
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/security/">security</a>
+    </span>
+    
+
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/2016/12/02/devops-02/"><span>运维工程师到底是个什么鬼（ 2 / 2 )</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/12/02/devops-02/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-12-02T07:26:12.000Z">
+          2016-12-02
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h2 id="一些疑问"><a href="#一些疑问" class="headerlink" title="一些疑问"></a>一些疑问</h2><p>第一个是关于 Windows 平台，现在互联网公司大部分用的还是 Linux 环境，对 Windows 环境，其实思路都是差不多的。只不过并不是特别了解。</p>
+<p>然后是有人说到 “网络工程师” 去哪了，好吧哈哈哈哈如果是小公司其实对网络的规划是比较弱的，当规模变大之后才会考虑到网络规划、划分 VLAN、交换机选型规划等，本文就先不涉及啦~</p>
+<p>同样，对于前端，后端的所需要掌握的技术，其实并不需要特别多。举几个例子：</p>
+<p>对于后端，你完全不需要考虑使用 Tornado 的异步框架来提高处理能力，你用 gunicron 跑多几个进程就好了，虽然这样会比较占用系统资源，但是简单吖，开发快啊，上手即用啊。</p>
+<p>而对前端来说，你根本无须关心兼容 IE ，甚至你根本不用去兼容老版本的 Chrome，甚至如果你们没有人用 Safari，你也不用去关心。因为对于面向程序员的 Web 应用，他们基本都会使用较新的浏览器。兼容性不是问题，你打开自己常用的 Chrome，点一点功能，看一看样式，没问题就过了。</p>
+<p>（专业前后端工程师请不要揍我，小弟知道小弟没有写单元测试）</p>
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/code/">code</a>
+    </span>
+    
+
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/2015/10/02/devops-01/"><span>运维工程师到底是个什么鬼（ 1 / 2 )</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2015/10/02/devops-01/" rel="bookmark">
+        <time class="entry-date published" datetime="2015-10-02T05:19:48.000Z">
+          2015-10-02
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>现在最前面，这篇文章一共分为两部分，第一部分主要是介绍运维工程师到底是个神马鬼工程师，他真的是每天跑机房，每天装机的么？第二部分是围绕运维工程师介绍技术栈以及运维体系架构。</p>
+<p>运维工程师，在英文里面名为 “Operations Engineer”，看字面意思，貌似的确就是操作服务器、管理系统的工程师。我们可以根据公司大小的不同，把它分为两个大类：Ops 和 DevOps。Ops 即运维，DevOps 即开发运维。让我们举个例子来说明一下。</p>
+<h2 id="Ops"><a href="#Ops" class="headerlink" title="Ops"></a>Ops</h2><p>小明，当年从学校毕业，熟读《鸟哥私房菜》N 遍，掌握了一手 Linux 操作命令。觉得自己已经碉堡了。遂进入一家创业公司，开始了第一份工作。</p>
+<p>公司这个时候需要搭建一个网站，但是没有机房没有服务器。小明说：我来定服务器型号和装系统吧！遂刷刷刷选定了一款 Dell 的服务器，插上了 N 条内存和几块硬盘，装上了系统。剩下的譬如机房网络等就交给了网络工程师负责了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Ops 必备技能入门款：</div><div class="line">    1、了解服务器基本型号。</div><div class="line">    2、熟练掌握使用系统安装。</div></pre></td></tr></table></figure>
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/code/">code</a>
+    </span>
+    
+
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/2015/09/14/music/"><span>音乐让我看到了一个崭新的世界</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2015/09/14/music/" rel="bookmark">
+        <time class="entry-date published" datetime="2015-09-14T14:56:38.000Z">
+          2015-09-14
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h3 id="关于音乐"><a href="#关于音乐" class="headerlink" title="关于音乐"></a>关于音乐</h3><p>最早接触乐器，是小学四年级的时候。学校说 “学校新开乐器兴趣班，想学乐器的报名，有钢琴，吉他，小提琴，长笛，萨克斯” 吧啦吧啦。</p>
+<p>恩，我学了小提琴，杀鸡神器。</p>
+<p>从此之后每天上学都背着部蓝色的小提琴盒屁颠屁颠去上课。4点下课就跑去练杀鸡大法。</p>
+<p>一年之后，小提琴兴趣班倒闭了。不知道是因为老师每天听到太多杀鸡的声音太多，还是杀鸡的人越来越少。反正它就是倒闭了。我还有其他2名同学，回家之后和爸妈告知该喜讯，第二天老妈和我说在外面找到了一个特别牛的老湿，这周开始上课。</p>
+<p>我当时的内心简直是一万只草泥马奔腾而过。</p>
+<p>就这样我小学毕业的时候已经开始练习8级曲目了。</p>
+<p>初中贪玩，没碰琴。高中，发觉自己荷尔蒙开始萌发，是时候拿起小提琴吸引一下女同学的注意了。就这样顶着 “小提琴王子” 的称号从高二一直到大三，一发不可收拾。最浪漫莫过于在自己女朋友不开心或者生日的时候拉上那么几首小曲儿。在琴房过浪漫二人世界。</p>
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/music/">music</a>
+    </span>
+    
+
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/2015/09/06/wall/"><span>翻过那座墙，你能到达世界任何角落</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2015/09/06/wall/" rel="bookmark">
+        <time class="entry-date published" datetime="2015-09-06T14:28:04.000Z">
+          2015-09-06
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>最近发现家里的宽带已经无法正常使用 OpenVPN 来看 Youtube 了。卡卡卡卡简直卡的一笔。</p>
+<p>不过身为一名中国人其实已经很习惯了各种不顺畅了，近 3 年墙也是迅猛发展，开始尝试各种新技术，加大封锁面了。不知不觉它的存在已经非常影响自己的生活了。</p>
+<p>毋庸置疑正是它的存在，国内的互联网企业才可以如此迅猛发展；同时也正因如此，国内的搜索简直就像扶不起的阿斗给出来的结果完全看不下眼。想当年 Google 还能用的时候，碰到地雷连接被重置的那会，被重置了再用 Baidu 恩。</p>
+<p>不过最近几年实在过头了，国外 N 多技术的网站都已经打不开了。同时还把 Akamai， Cloudflare， GoogleCDN 这类 CDN 封了，导致一半以上的国外网站打不开，或者打开完全看不了因为静态资源和样式全跪了。对于做技术的人简直就是一场噩梦。你试试用 Baidu 搜搜技术的东西……简直心痛。啊我的心好痛。</p>
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/life/">life</a>
+    </span>
+    
+
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/2015/08/28/keyboard/"><span>谈谈键盘，以及工作</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2015/08/28/keyboard/" rel="bookmark">
+        <time class="entry-date published" datetime="2015-08-28T14:24:05.000Z">
+          2015-08-28
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h3 id="说说机械键盘"><a href="#说说机械键盘" class="headerlink" title="说说机械键盘"></a>说说机械键盘</h3><p>我曾经迷恋并尝试各种不一样的键盘，花上很多时间去寻找最适合自己的键盘。</p>
+<p>三年前，还没毕业的我。花了我半个月的实习工资，买了第一部机械键盘，Das Keyboard 4 Ultimate 茶轴。放在桌面小心翼翼地敲击，细细感受茶轴轻微的两段式。在真正沉浸在码字的工作当中时，双手没有任何的不适感，反而是思想已经跟不上自己十指敲击的速度。以前如果是使用薄膜键盘，连续打字半个小时双手就已经酸胀不止无法继续了。</p>
+<p>也是在那个时候，自己的双手越来越挑剔，挑剔到工作中，任何一点的不适我都会花上大量的时间去修补。虽然 Das Keyboard 的敲击手感无刻挑剔，简直可以说是我遇到过最好的手感，可是最致命的是它的键盘设计是全键盘。回车右边的键盘我买回来从来没按过，占了我的桌面，还导致我的鼠标离我真的很远。</p>
+<p>所以我的下一个键盘就是 60% 大小的键盘。第一选择，无可厚非，HHKB pro 2。被人捧到飞起的键盘，连 C 语言之父 Richard stallman 也在用的键盘。其实它并不是机械键盘，但这不重要，重要的是它的手感并不怎样，打字会累，真的会累。个人觉得。最后试了 n 个，最后一直在用 Poker 2 的定制无刻键盘。</p>
+<p>或许有人会觉得：一个键盘，何必呢？又或者说：我又不是工程师，我不需要啊。</p>
+<p>正如你不了解它，你才会觉得自己并不需要它。你在用过 iPhone 之前一样不会觉得它好用。</p>
+<p>试试，尝试不带任何看法，找一部机械键盘，安静地工作一天。你会发现意想不到的结果。</p>
+<p>对于文字工作者来说，可能觉得一部好用的电脑就够了，其实你委屈了你的双手，每天在笔记本电脑的键盘上敲击十几个小时，有时候你发现自己的手不听话了，或者隐隐镇痛了，却没有考虑过其实是你正在使用的键盘并不适合打字。</p>
+<p>如果你是一名乐手，你非常清楚一部乐器对你意味着什么。我曾经的小提琴老师和我说：不要小看弓和琴弦，它会影响你的演奏感受。再好的小提琴如果没有一名可以融入其中的乐手演奏，演奏出来的曲子也是没有灵魂的。</p>
+<p>Pirastro 家出的小提琴弦，它会在它的包装上写上这样一句话:</p>
+<p>I’m so happy, I can’t stop playing!</p>
+<p>琴弦随着你的手指颤动，全身心的投入其中，奏出最美丽的乐章。</p>
+<p>对文字工作来说，你的文字一样是艺术，它是靠你的双手演奏出来的，你的每次敲击，就是在创作。</p>
+<p>I’m so happy, I can’t stop typing!</p>
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/work/">work</a>
+    </span>
+    
+
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/2015/06/19/new-zealand-journey/"><span>New Zealand Journey</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2015/06/19/new-zealand-journey/" rel="bookmark">
+        <time class="entry-date published" datetime="2015-06-19T12:55:03.000Z">
+          2015-06-19
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>早在14年的时候就萌生了前往新西兰的年头。但是真的仅仅是被新西兰美丽的星空迷住了。在 Lake Tekapo 边上，看着牧羊人教堂在繁星下静静的守候着，仰头浩瀚的星空和银河，时而飞过一尾流星，躺在草地上，感受着生命。<br>那是14年4月份的一个晚上，但是还在白云山附近租的房子，You+ 青年公寓。每天忙碌奔波爬上白云山上班。生命总是如此乏味。</p>
+<p>每每想着一定要抽时间出去旅游，找了一个又一个的国家，看了一个又一个城市。总是在准备签证的时候，看着一摞又一摞的准备材料而望而却步。心想一个月光族怎么可能有这么多存款，这么多的准备材料要准备到何年何月。所以一次又一次的关闭了浏览器，重新打开命令行工作。</p>
+<p>来北京工作了半年之后，突然意识到。这样不行，还是要出去。咬咬牙，开始准备签证了。</p>
+<p>没有想到，新西兰自然风光之旅，最后变成了一场极限之旅。从皇后镇的 skyline 山顶乘坐滑翔伞，然后到至高点的 47m 的蹦极，最后到奥克兰的 13000 feet 的高空跳伞。从来没有想过，短短的7天时间，我就把我人生一直不敢尝试的极限运动全部都试了一次。</p>
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/life/">life</a>
+    </span>
+    
+
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/2015/04/26/nf-conntrack/"><span>nf_conntrack_max 设置的持久化方法</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2015/04/26/nf-conntrack/" rel="bookmark">
+        <time class="entry-date published" datetime="2015-04-26T13:46:59.000Z">
+          2015-04-26
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>在并发较高的服务器譬如 Nginx 或者 Haproxy上，并设置了 iptables 的 NAT 表，如果没有设置好很容易出现丢包的情况。是真的丢，一丢丢一堆，连 ping 都不通，让人抓狂。仔细查看日志会发现特别多这样的错误：</p>
+<pre><code>ip_conntrack: table full, dropping packet.
+</code></pre><p>这个问题的解决方法其实很多，google 一下会发现大把。譬如：</p>
+<pre><code>echo &quot;6553500&quot; &gt; /proc/sys/net/nf_conntrack_max
+</code></pre><p>喔！你发现重启后会失效，所以大家推荐把这一行写到 <code>/etc/rc.local</code> 下。</p>
+<p>细想一下，你会发现它是在 <code>/proc/sys</code> 下的，所以可以直接写到 <code>/etc/sysctl.conf</code> 下。遂小聪明一刷，我写：</p>
+<pre><code>echo &quot;net.nf_conntrack_max=6553600&quot; &gt;&gt; /etc/sysctl.conf
+// 可能有很多类似的设置，譬如 net.netfilter.nf_conntrack_max，net.ipv4.ip_conntrack_max 等，设置一个就好了。
+//这个是历史遗留问题，等 netfliter 模块发展到一定时候就会统一。 
+</code></pre><p>好我重启，卧槽，为什么没有成功！我看看日志</p>
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/linux/">linux</a>
+    </span>
+    
+
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/2015/04/19/arp/"><span>ARP 广播拿到错误 MAC 地址</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2015/04/19/arp/" rel="bookmark">
+        <time class="entry-date published" datetime="2015-04-19T11:48:10.000Z">
+          2015-04-19
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>线上服务器有时候会无缘无故发生 Zabbix Server 误报机器 Zabbix Agent 不存活的情况，而且发生的非常没有规律。但是过一段之后之后自然就好了。服务也没有各种异常发生。机器这段时间也并没有做过任何改动，甚至都没有登陆过。</p>
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/linux/">linux</a>
+    </span>
+    
+
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+
+<nav class="pagination">
+  
+  
+</nav>
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2017 Yang
+    
+  </p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>

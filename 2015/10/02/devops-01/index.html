@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>运维工程师到底是个什么鬼（ 1 / 2 ) | Yang&#39;s Blog | for anything.</title>
+
+  
+  <meta name="author" content="Yang">
+  
+
+  
+  <meta name="description" content="前言现在最前面，这篇文章一共分为两部分，第一部分主要是介绍运维工程师到底是个神马鬼工程师，他真的是每天跑机房，每天装机的么？第二部分是围绕运维工程师介绍技术栈以及运维体系架构。
+运维工程师，在英文里面名为 “Operations Engineer”，看字面意思，貌似的确就是操作服务器、管理系统的工程师。我们可以根据公司大小的不同，把它分为两个大类：Ops 和 DevOps。Ops 即运维，DevOps 即开发运维。让我们举个例子来说明一下。
+Ops小明，当年从学校毕业，熟读《鸟哥私房菜》N 遍，掌握了一手 Linux 操作命令。觉得自己已经碉堡了。遂进入一家创业公司，开始了第一份工作。
+公司这个时候需要搭建一个网站，但是没有机房没有服务器。小明说：我来定服务器型号和装系统吧！遂刷刷刷选定了一款 Dell 的服务器，插上了 N 条内存和几块硬盘，装上了系统。剩下的譬如机房网络等就交给了网络工程师负责了。
+123Ops 必备技能入门款：    1、了解服务器基本型号。    2、熟练掌握使用系统安装。">
+  
+
+  
+  
+  <meta name="keywords" content="">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="运维工程师到底是个什么鬼（ 1 / 2 )"/>
+
+  <meta property="og:site_name" content="Yang&#39;s Blog"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Yang&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">Yang&#39;s Blog</a>
+    </h1>
+    <p class="site-description">for anything.</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>运维工程师到底是个什么鬼（ 1 / 2 )</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2015/10/02/devops-01/" rel="bookmark">
+        <time class="entry-date published" datetime="2015-10-02T05:19:48.000Z">
+          2015-10-02
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>现在最前面，这篇文章一共分为两部分，第一部分主要是介绍运维工程师到底是个神马鬼工程师，他真的是每天跑机房，每天装机的么？第二部分是围绕运维工程师介绍技术栈以及运维体系架构。</p>
+<p>运维工程师，在英文里面名为 “Operations Engineer”，看字面意思，貌似的确就是操作服务器、管理系统的工程师。我们可以根据公司大小的不同，把它分为两个大类：Ops 和 DevOps。Ops 即运维，DevOps 即开发运维。让我们举个例子来说明一下。</p>
+<h2 id="Ops"><a href="#Ops" class="headerlink" title="Ops"></a>Ops</h2><p>小明，当年从学校毕业，熟读《鸟哥私房菜》N 遍，掌握了一手 Linux 操作命令。觉得自己已经碉堡了。遂进入一家创业公司，开始了第一份工作。</p>
+<p>公司这个时候需要搭建一个网站，但是没有机房没有服务器。小明说：我来定服务器型号和装系统吧！遂刷刷刷选定了一款 Dell 的服务器，插上了 N 条内存和几块硬盘，装上了系统。剩下的譬如机房网络等就交给了网络工程师负责了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Ops 必备技能入门款：</div><div class="line">    1、了解服务器基本型号。</div><div class="line">    2、熟练掌握使用系统安装。</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>好，服务器装好了，系统跑起来了。公司现在有 3 名开发工程师，小明分别为这 3 名工程师添加好了用户，并配置好了 SSH 让他们可以远程登录服务器。同时配置了一下 Nginx，让大家可以直接访问 WEB 界面来调试代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Ops 必备技能基本款：</div><div class="line">    3、熟练掌握服务器配置、添加用户等基本操作。</div><div class="line">    4、了解 Nginx、SSH 等常用服务。</div></pre></td></tr></table></figure>
+<p>随着公司的开发人员越来越多，以及服务器越来越多。小明觉得自己已经力不从心了，每天都在帮人给每台服务器添加账户，添加管理配置，跑机房重装系统。他觉得自己不能这样，这样效率实在太低了，而且现在他管理的机器已经乱成一锅粥了，每台机器的配置、分区、包全部都不一样，导致开发那边经常会说：</p>
+<ul>
+<li>小明！为啥这台机器的根分区只有 10G，我其他的机器都是 50G 的！</li>
+<li>小明！我这台2台机器怎么连 apt-get 的源都不一样，装的包的版本都不同！</li>
+<li>小明！我这两台机器怎么一台 128G 内存，另一台只有 16G， 跑毛啊。</li>
+</ul>
+<p>所以小明决定整顿一下把他们全部规整起来，制定了服务器的标准。同时在网上寻找了一些开源软件，以实现服务器的批量管理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Ops 必备技能进阶款：</div><div class="line">    5、熟练使用 Cobbler 等工具实现自动网络安装。</div><div class="line">    6、熟练使用 Puppet、Saltstack、Ansible 等批量管理工具统一服务器基本配置。</div><div class="line">    7、定制服务器的规格以及系统标准（系统版本、分区、预装软件等）。</div></pre></td></tr></table></figure>
+<p><strong>从此以后，小明再也不用跑机房装机了！（所以运维工程师不是每天都跑机房的！）</strong></p>
+<p>同样，随着公司的发展，网站访问量的增多。系统相关的问题以及需求也越来越多。网站经常会出现各种奇奇怪怪的问题，譬如 Nginx 服务器请求量特别高的时候发生丢包情况、内网机器时不时会丢包连不上、服务器 closewait、timewait变得特别多、虚拟机的 ksoftirqd 进程 CPU 占用特别高等问题。小明开始惊慌失措，完全不知道怎么解决。这个时候公司来了一位高级运维工程师，带着小明解决了各类离奇问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Ops 必备高级款：</div><div class="line">    8、熟练掌握系统 sysctl 中常用参数的定义以及影响。</div><div class="line">    9、熟练掌握 iptables 的配置。</div><div class="line">    10、熟练掌握 /proc 以及 /sys 目录下各个目录以及文件的含义。</div><div class="line">    11、通过经验的积累，逐步培养出遇到 bug 快速定位问题的能力。</div></pre></td></tr></table></figure>
+<p>到此为止，Ops 相关的工作基本完成。</p>
+<h2 id="DevOps"><a href="#DevOps" class="headerlink" title="DevOps"></a>DevOps</h2><p>随着运维工具化的逐步完善，现在小明帮助开发完成操作的时间已经可以用秒来衡量了。可是小明遇到一个棘手的问题：他需要每天 24 小时待命去解决开发扔给他的问题。小明现在是看场电影也担心有人找他。</p>
+<p>这个时候，他觉得需要有一个运维平台，代替他完成这些重复性的工作。</p>
+<p>小明初步规划了一下，大概总结出了以下几个需求：</p>
+<ul>
+<li>服务器自助申请，开发自行申请服务器，系统自动分配可用服务器。</li>
+<li>服务器装机的自动化，开发可以自行重装系统。</li>
+<li>服务器权限的自助申请，开发可以自行申请服务器的权限。</li>
+<li>服务器基础配置以及应用自动化，可以让开发自行配置服务器包版本、Nginx 配置，并自行刷到服务器上。</li>
+</ul>
+<p>同时还有以下需求，运维自身的需求：</p>
+<ul>
+<li>服务器状态报警，譬如网线或者硬盘坏了，服务器挂掉了。</li>
+<li>对服务器的使用情况管理，定期发报告统计服务器的使用情况。</li>
+<li>对服务器操作的审计。</li>
+</ul>
+<p>小明把需求列出来之后，认识到自己面对了一个非常巨大的挑战。总结就是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">DevOps 必备基本款：</div><div class="line">    1、了解数据库基本操作。</div><div class="line">    2、熟悉至少一种后端语言（大部分DevOps都是用 Python）。</div><div class="line">    3、熟悉 Html、Css、Javascript 前端语言。</div></pre></td></tr></table></figure>
+<p>小明花了很长的时间，学习并大概写了一个前端出来。大概是这样的</p>
+ <img src="/images/ca263bbbf18c44d3b6f4a029eac69a35_b.jpg" class="center" width="400">
+<p>他咨询了一下开发，觉得他写的前端怎样。开发望了一眼，口吐白泡。</p>
+<p>小明觉得这样不行，遂继续学习，他发现前端的框架都好漂亮，遂决定一试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">DevOps 必备进阶款：</div><div class="line">    4、掌握 Tornado 或者 Django 等 Web 框架。</div><div class="line">    5、了解 API 规范（RESTful 规范）等。</div><div class="line">    6、熟练使用前端库以及框架，譬如：jQuery、Highchart、AngularJS、ReactJS 等。</div><div class="line">    7、了解设计理念，尊重设计规范。譬如 Material UI，Bootstrap。</div></pre></td></tr></table></figure>
+<p>经过漫长的学习，小明终于把前端写出来了，大概是这样：</p>
+<img src="/images/7d10f06e734a28cf36cfd784d79a4d3b_b.jpg" class="center" width="400">
+<p>开发用过，都说赞。</p>
+<p>然后，小明发现一个问题。他发现整个运维体系都特别的松散，没有一个完整的规划。基本都是开发需要什么，他们才做什么。所有的功能也是东一个西一个。</p>
+<p>应该有一个非常明确的运维规划，将所有运维相关的服务都整理汇总并串联起来，才能做到有条不紊、环环相扣。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">DevOps 必备高级款：</div><div class="line">    8、……</div></pre></td></tr></table></figure>
+<p>欲知后事如何，请听下回分解。</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/code/">code</a>
+    </span>
+    
+
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2017 Yang
+    
+  </p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>nf_conntrack_max 设置的持久化方法 | Yang&#39;s Blog | for anything.</title>
+
+  
+  <meta name="author" content="Yang">
+  
+
+  
+  <meta name="description" content="在并发较高的服务器譬如 Nginx 或者 Haproxy上，并设置了 iptables 的 NAT 表，如果没有设置好很容易出现丢包的情况。是真的丢，一丢丢一堆，连 ping 都不通，让人抓狂。仔细查看日志会发现特别多这样的错误：
+ip_conntrack: table full, dropping packet.
+这个问题的解决方法其实很多，google 一下会发现大把。譬如：
+echo &amp;quot;6553500&amp;quot; &amp;gt; /proc/sys/net/nf_conntrack_max
+喔！你发现重启后会失效，所以大家推荐把这一行写到 /etc/rc.local 下。
+细想一下，你会发现它是在 /proc/sys 下的，所以可以直接写到 /etc/sysctl.conf 下。遂小聪明一刷，我写：
+echo &amp;quot;net.nf_conntrack_max=6553600&amp;quot; &amp;gt;&amp;gt; /etc/sysctl.conf
+// 可能有很多类似的设置，譬如 net.netfilter.nf_conntrack_max，net.ipv4.ip_conntrack_max 等，设置一个就好了。
+//这个是历史遗留问题，等 netfliter 模块发展到一定时候就会统一。 
+好我重启，卧槽，为什么没有成功！我看看日志">
+  
+
+  
+  
+  <meta name="keywords" content="">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="nf_conntrack_max 设置的持久化方法"/>
+
+  <meta property="og:site_name" content="Yang&#39;s Blog"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Yang&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">Yang&#39;s Blog</a>
+    </h1>
+    <p class="site-description">for anything.</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>nf_conntrack_max 设置的持久化方法</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2015/04/26/nf-conntrack/" rel="bookmark">
+        <time class="entry-date published" datetime="2015-04-26T13:46:59.000Z">
+          2015-04-26
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>在并发较高的服务器譬如 Nginx 或者 Haproxy上，并设置了 iptables 的 NAT 表，如果没有设置好很容易出现丢包的情况。是真的丢，一丢丢一堆，连 ping 都不通，让人抓狂。仔细查看日志会发现特别多这样的错误：</p>
+<pre><code>ip_conntrack: table full, dropping packet.
+</code></pre><p>这个问题的解决方法其实很多，google 一下会发现大把。譬如：</p>
+<pre><code>echo &quot;6553500&quot; &gt; /proc/sys/net/nf_conntrack_max
+</code></pre><p>喔！你发现重启后会失效，所以大家推荐把这一行写到 <code>/etc/rc.local</code> 下。</p>
+<p>细想一下，你会发现它是在 <code>/proc/sys</code> 下的，所以可以直接写到 <code>/etc/sysctl.conf</code> 下。遂小聪明一刷，我写：</p>
+<pre><code>echo &quot;net.nf_conntrack_max=6553600&quot; &gt;&gt; /etc/sysctl.conf
+// 可能有很多类似的设置，譬如 net.netfilter.nf_conntrack_max，net.ipv4.ip_conntrack_max 等，设置一个就好了。
+//这个是历史遗留问题，等 netfliter 模块发展到一定时候就会统一。 
+</code></pre><p>好我重启，卧槽，为什么没有成功！我看看日志</p>
+<a id="more"></a>
+<pre><code>nf_conntrack version 0.5.0 (7997 buckets, 31988 max)
+// 不同电脑的 buckets 都不同。
+</code></pre><p>它竟然没有读 <code>/etc/sysctl.conf</code> 的配置！</p>
+<hr>
+<p>其实道理很简单，我们可以首先了解一下 Linux 系统启动流程。一共分为以下几个步骤（我这里就不介绍BIOS等硬件模块了的开机了）：</p>
+<ol>
+<li>读内核，从 <code>/boot</code>目录下读取 Linux 内核引导系统；</li>
+<li>init 进程初始化系统；</li>
+<li>init 读取 <code>/etc/inittab</code> 文件作为入口开始运行系统开机脚本；</li>
+<li>读取 <code>/etc/rcN.d</code> 系统启动项；</li>
+<li>用户登录。</li>
+</ol>
+<p>我们着重看 3 和 4 阶段。</p>
+<p>在第三阶段，我们顺着 <code>/etc/inittab</code> 的脚本顺藤摸瓜，可以发现它最后调用了 <code>/etc/sysctl.conf</code>。执行文件的顺序是 （Ubuntu 系统为例）：</p>
+<pre><code>/etc/inittab =&gt; /etc/init.d/rc =&gt; /etc/init.d/.depend.boot =&gt; /etc/init.d/procps =&gt; /etc/sysctl.conf
+</code></pre><p>即使我们在 <code>/etc/sysctl.conf</code> 中加上了 <code>net.nf_conntrack_max=6553600</code>，但是我们会可以查到 <code>nf_conntrack_max</code> 实际上是 <code>nf_conntrack</code> 模块的一个参数，而在系统开机的时候这个模块根本没有加载。在运行了 <code>iptables -t nat -L</code> 之后才会被加载。</p>
+<p>在第四阶段，为了让 iptables 能够在开机自动启动，我们会装一个包，叫做 <code>iptables-persistent</code>，然后它会创建一个开机脚本，为 <code>/etc/rc3.d/S01iptables-persistent</code>。而此时一旦这个脚本被执行，我们的可爱的 <code>nf_conntrack</code> 终于被加载了。</p>
+<p>所以你会发现，你的 <code>/etc/sysctl.conf</code> 虽然执行了，但是你的 iptables 在那个时候根本没有生效，所以你的设置是没有任何意义的。</p>
+<hr>
+<p>另外提一下，我们在手动执行 <code>iptables -t nat -L</code> 的时候，我们会发现一个这样的错误：</p>
+<pre><code>nf_conntrack version 0.5.0 (7997 buckets, 31988 max)
+</code></pre><p>根据 kernel 的 doc <a href="https://www.kernel.org/doc/Documentation/networking/nf_conntrack-sysctl.txt" target="_blank" rel="external">https://www.kernel.org/doc/Documentation/networking/nf_conntrack-sysctl.txt</a></p>
+<pre><code>nf_conntrack_buckets - INTEGER (read-only)
+    Size of hash table. If not specified as parameter during module
+    loading, the default size is calculated by dividing total memory
+    by 16384 to determine the number of buckets but the hash table will
+    never have fewer than 32 and limited to 16384 buckets. For systems
+    with more than 4GB of memory it will be 65536 buckets.
+
+nf_conntrack_max - INTEGER
+    Size of connection tracking table.  Default value is
+    nf_conntrack_buckets value * 4.
+</code></pre><p>按照官方文档的说法，64 位且内存大于 4G 的系统，最大应该是可以默认开启 262144 大小的 conntrack， 不过我测试了部分机器，最大也就只能是默认 65536, 不知道是不是 nf_conntrack_max 本身有一个最大值。</p>
+<hr>
+<p>所以解决办法非常简单，你只需要把 <code>nf_conntrack</code> 加到系统开机模块，就可以用 <code>/etc/sysctl.conf</code> 开机设置它了，以后也不会爆 table 了：</p>
+<pre><code>echo &quot;nf_conntrack&quot; &gt;&gt;  /etc/modules
+echo &quot;net.nf_conntrack_max=6553600&quot; &gt;&gt; /etc/sysctl.conf    
+</code></pre>
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/linux/">linux</a>
+    </span>
+    
+
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2017 Yang
+    
+  </p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>

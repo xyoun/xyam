@@ -1,0 +1,214 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>运维工程师到底是个什么鬼（ 2 / 2 ) | Yang&#39;s Blog | for anything.</title>
+
+  
+  <meta name="author" content="Yang">
+  
+
+  
+  <meta name="description" content="一些疑问第一个是关于 Windows 平台，现在互联网公司大部分用的还是 Linux 环境，对 Windows 环境，其实思路都是差不多的。只不过并不是特别了解。
+然后是有人说到 “网络工程师” 去哪了，好吧哈哈哈哈如果是小公司其实对网络的规划是比较弱的，当规模变大之后才会考虑到网络规划、划分 VLAN、交换机选型规划等，本文就先不涉及啦~
+同样，对于前端，后端的所需要掌握的技术，其实并不需要特别多。举几个例子：
+对于后端，你完全不需要考虑使用 Tornado 的异步框架来提高处理能力，你用 gunicron 跑多几个进程就好了，虽然这样会比较占用系统资源，但是简单吖，开发快啊，上手即用啊。
+而对前端来说，你根本无须关心兼容 IE ，甚至你根本不用去兼容老版本的 Chrome，甚至如果你们没有人用 Safari，你也不用去关心。因为对于面向程序员的 Web 应用，他们基本都会使用较新的浏览器。兼容性不是问题，你打开自己常用的 Chrome，点一点功能，看一看样式，没问题就过了。
+（专业前后端工程师请不要揍我，小弟知道小弟没有写单元测试）">
+  
+
+  
+  
+  <meta name="keywords" content="">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="运维工程师到底是个什么鬼（ 2 / 2 )"/>
+
+  <meta property="og:site_name" content="Yang&#39;s Blog"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Yang&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">Yang&#39;s Blog</a>
+    </h1>
+    <p class="site-description">for anything.</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>运维工程师到底是个什么鬼（ 2 / 2 )</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/12/02/devops-02/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-12-02T07:26:12.000Z">
+          2016-12-02
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h2 id="一些疑问"><a href="#一些疑问" class="headerlink" title="一些疑问"></a>一些疑问</h2><p>第一个是关于 Windows 平台，现在互联网公司大部分用的还是 Linux 环境，对 Windows 环境，其实思路都是差不多的。只不过并不是特别了解。</p>
+<p>然后是有人说到 “网络工程师” 去哪了，好吧哈哈哈哈如果是小公司其实对网络的规划是比较弱的，当规模变大之后才会考虑到网络规划、划分 VLAN、交换机选型规划等，本文就先不涉及啦~</p>
+<p>同样，对于前端，后端的所需要掌握的技术，其实并不需要特别多。举几个例子：</p>
+<p>对于后端，你完全不需要考虑使用 Tornado 的异步框架来提高处理能力，你用 gunicron 跑多几个进程就好了，虽然这样会比较占用系统资源，但是简单吖，开发快啊，上手即用啊。</p>
+<p>而对前端来说，你根本无须关心兼容 IE ，甚至你根本不用去兼容老版本的 Chrome，甚至如果你们没有人用 Safari，你也不用去关心。因为对于面向程序员的 Web 应用，他们基本都会使用较新的浏览器。兼容性不是问题，你打开自己常用的 Chrome，点一点功能，看一看样式，没问题就过了。</p>
+<p>（专业前后端工程师请不要揍我，小弟知道小弟没有写单元测试）</p>
+<a id="more"></a>
+<h2 id="梳理流程"><a href="#梳理流程" class="headerlink" title="梳理流程"></a>梳理流程</h2><p>小明经过之前的努力，虽然把各个功能都写出来了，但是功能都特别的零散。所以他开始思考怎样才能构建一个完备的系统。他觉得有必要过一遍服务器从采购到交付的所有步骤，这样才能把整个系统的架构确定下来。列出来之后，小明把每一项都对应到了运维系统当中，非常明确的目的导向型的架构。</p>
+<p><strong>1. 开发发现自己的服务器资源不够了，决定需要采购服务器。</strong></p>
+<ul>
+<li><p>怎样发现自己的资源不够了？ =》资源使用量功能统计（对监控数据进行汇总分析）。</p>
+</li>
+<li><p>通过报警，还是报表？=》定期告知负责人的服务器的负载，如果负载超过某个阈值自动提醒。</p>
+</li>
+</ul>
+<p><strong>2. 开发提出需求，需要服务器资源。并告知服务器的配置。</strong></p>
+<ul>
+<li><p>开发怎么确定自己需要怎样的服务器型号？ =》规范服务器型号，规格。</p>
+</li>
+<li><p>在哪里申请？直接找你么？ =》服务器自助申请页面。</p>
+</li>
+<li><p>申请完成之后，状态是怎样的？ =》运维及时在系统中更新服务器申请进度。服务器可用时自动通知。</p>
+</li>
+</ul>
+<p><strong>3. 将服务器配置单交给服务器供应商，供应商开始准备服务器。</strong></p>
+<ul>
+<li><p>怎么提交配置单？人手工发？ =》供应商采购信息页面，审核通过后自动发送。</p>
+</li>
+<li><p>准备好之后？的信息怎么录入？ =》 提供给供应商接口，让其在准备好服务器之后录入服务器的信息。（对应机器的 mac 其实就够了，其他信息在机器装好之后可以直接调）</p>
+</li>
+</ul>
+<p><strong>4. 服务器准备好后，快递到机房，并上架。</strong></p>
+<ul>
+<li><p>邮件功能，告知新的服务器需要上架。</p>
+</li>
+<li><p>机房怎么知道上到哪里去？ =》上架功能。将机柜位置以及 U 位、交换机口信息全部维护起来。系统会自动寻找空闲机柜，为新的服务器分配机柜、U 位，并分配交换机口。</p>
+</li>
+</ul>
+<p><strong>5. 安装系统。</strong></p>
+<ul>
+<li><p>服务器的管理口 IP ，以及系统 IP 怎么分配？ =》 IP 管理功能，维护所有服务器的 IP 地址。并可以通过接口调取可用 IP。</p>
+</li>
+<li><p>怎么装机？用 CD？ =》 PXE 网络安装系统（可以用 Cobbler, 当然如果你觉得它太庞大，可以试试 <a href="https://github.com/psychomario/PyPXE" target="_blank" rel="external">PyPXE</a>）。</p>
+</li>
+</ul>
+<p><strong>6. 服务器列表管理。</strong></p>
+<ul>
+<li><p>服务器太多了，我已经不知道我们有多少台服务器了。 =》服务器信息汇总页面，所有服务器应该都在这个页面当中（Saltstack 的 <code>salt-key -L</code> 不错）。</p>
+</li>
+<li><p>我想知道我有多少机器怎么办？ =》把服务器与负责人一一绑定，支持查看别人的服务器信息。</p>
+</li>
+</ul>
+<p><strong>7. 系统环境。
+</strong></p>
+<ul>
+<li>系统装好后，各种基础包，个性化配置怎么搞？ =》 Saltstack、Ansible、Puppet 等自动化工具的调用。</li>
+</ul>
+<p><strong>8. 开发权限的管理。</strong></p>
+<ul>
+<li>开发现在这么多，服务器也这么多，怎么管理？ =》开发人员 SSH 的管理页面（自动化工具都有管理 SSH key 的功能，你指需要封装一下后端，实现下前端就好啦），自助申请服务器权限页面。</li>
+</ul>
+<p><strong>9. 应用的个性需求。</strong></p>
+<ul>
+<li>不同的应用需要不同的基础包或者坏境，怎么破？ =》 封装自动化工具的接口，让开发可以自行管理自己服务器的模板。</li>
+</ul>
+<h2 id="运维架构"><a href="#运维架构" class="headerlink" title="运维架构"></a>运维架构</h2><p>经过这样梳理之后，小明觉得自己的运维系统的框架大概出来了，剩下的就是一个一个去实现了。汇总一下各大类，其实一共就是 4 大块的内容。</p>
+<img src="/images/5230bf6772d7ca4af3f4a342bd480e59_b.jpg" class="center" width="400">
+<p><strong>IDC 运维</strong></p>
+<p>管理机房以及网络相关的东西，譬如机柜、U 位的规划，网络、网段的规划。上面提到的自动分配机柜、U 位、交换机、IP 等就是在这一层完成的。</p>
+<p><strong>硬件运维</strong></p>
+<p>包括了采购服务器，上架这几个部分。同时服务器列表，以及容量的规划也是在这一层做的。</p>
+<p><strong>系统运维</strong></p>
+<p>包括服务器的安装，服务器基本环境的部署。以及开发 SSH key 的统一管理。</p>
+<p><strong>应用运维</strong></p>
+<p>开发的权限管理，服务器个性化的模板管理。</p>
+<p><strong>其他</strong></p>
+<p>这里面还有一些没有提及到的，但是同样非常重要的。譬如机器硬件的报警、系统使用率的报警。运维相关的报警是比较复杂的，在这里先不详细说了。</p>
+<h2 id="架构的进一步思考"><a href="#架构的进一步思考" class="headerlink" title="架构的进一步思考"></a>架构的进一步思考</h2><p>小明其实知道，现在这样一个到处都是 “云云云云” 的时代。随便一个云平台，都号称 ”1分钟“ 为你准备好一台可以使用的机器。</p>
+<p>小明看了一下自己的这个架构，仔细想了一下，我们现在申请一台机器需要 1 周左右的时间，简直不能忍。如果我提前买好服务器，是不是就可以解决这个问题了。</p>
+<p>经过若干秒的思考，小明仰天一笑： ”Server as a Service”。看来可以引入服务器池了……</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/code/">code</a>
+    </span>
+    
+
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2017 Yang
+    
+  </p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>

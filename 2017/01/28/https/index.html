@@ -1,0 +1,259 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>知乎都全站 HTTPS 好久了, 你还好意思不懂 HTTPS? | Yang&#39;s Blog | for anything.</title>
+
+  
+  <meta name="author" content="Yang">
+  
+
+  
+  <meta name="description" content="推广 HTTPS 的道路从来都不是一帆风顺的，国外的互联网大头貌似都在飞快地推行着而且基本都已经实现全站了，国内推广的速度反而像蜗牛一样。BAT 也就阿里上了全站 HTTPS，百度也开始逐步迈向 HTTPS 的行列，像百度图片还没有。我也就不喷国内某大型社交网站登陆账号用的是 HTTP + GET 的方式请求了，虽然加了校验，但是还是有风险。
+上全站 HTTPS 的流程大概是这样的：
+买证书啊中国的一个叫 WoSign 的 CA 之前给一个 schrauger.github.com 生成了一个 *.github.com 的 SSL，然后还有一个月内生成了几百个相同序列号的证书。Firefox 脑袋一拍，决定从 2016 年 10月份把它从信任 CA 列表中除名。对 WoSign 感兴趣？这里：CA:WoSign Issues，你也可以点上面那个 github 的地址，第一篇就是：The story of how WoSign gave me an SSL certificate for GitHub.com。所以你需要考虑到底是用国内的还是国外的。就安全性来说当然是 GeoTrust 是最靠谱的，但是贵呀。如果你的企业有一定的背景，说不定还不让用国外的产品。
+So… 如果你网管不小心配错了证书，但是你又开了 HTTPS 的端口，会这样：或者这样：">
+  
+
+  
+  
+  <meta name="keywords" content="">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="知乎都全站 HTTPS 好久了, 你还好意思不懂 HTTPS?"/>
+
+  <meta property="og:site_name" content="Yang&#39;s Blog"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Yang&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">Yang&#39;s Blog</a>
+    </h1>
+    <p class="site-description">for anything.</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>知乎都全站 HTTPS 好久了, 你还好意思不懂 HTTPS?</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2017/01/28/https/" rel="bookmark">
+        <time class="entry-date published" datetime="2017-01-28T05:05:43.000Z">
+          2017-01-28
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>推广 HTTPS 的道路从来都不是一帆风顺的，国外的互联网大头貌似都在飞快地推行着而且基本都已经实现全站了，国内推广的速度反而像蜗牛一样。BAT 也就阿里上了全站 HTTPS，百度也开始逐步迈向 HTTPS 的行列，像百度图片还没有。我也就不喷国内某大型社交网站登陆账号用的是 HTTP + GET 的方式请求了，虽然加了校验，但是还是有风险。</p>
+<p>上全站 HTTPS 的流程大概是这样的：</p>
+<h2 id="买证书啊"><a href="#买证书啊" class="headerlink" title="买证书啊"></a>买证书啊</h2><p>中国的一个叫 WoSign 的 CA 之前给一个 <a href="http://schrauger.github.com/" target="_blank" rel="external">schrauger.github.com</a> 生成了一个 *.github.com 的 SSL，然后还有一个月内生成了几百个相同序列号的证书。Firefox 脑袋一拍，决定从 2016 年 10月份把它从信任 CA 列表中除名。对 WoSign 感兴趣？这里：<a href="https://wiki.mozilla.org/CA%3AWoSign_Issues" target="_blank" rel="external">CA:WoSign Issues</a>，你也可以点上面那个 github 的地址，第一篇就是：The story of how WoSign gave me an SSL certificate for GitHub.com。<br>所以你需要考虑到底是用国内的还是国外的。就安全性来说当然是 GeoTrust 是最靠谱的，但是贵呀。如果你的企业有一定的背景，说不定还不让用国外的产品。</p>
+<p>So… 如果你网管不小心配错了证书，但是你又开了 HTTPS 的端口，会这样：<br><img src="/images/v2-49d7311951dd4792b797dcf04f2a1bd0_b.jpg" class="center" width="400"><br>或者这样：<br><img src="/images/v2-09533ab672b8861dfd93dc48d14d4ab4_b.jpg" class="center" width="400"></p>
+<a id="more"></a>
+<h2 id="证书够装逼才行"><a href="#证书够装逼才行" class="headerlink" title="证书够装逼才行"></a>证书够装逼才行</h2><p>说到证书，你会发现它有很多种类型的，最装逼的当然是 twitter 这样的啦：<img src="/images/v2-dff55fe35e24c5543e1c35d4f8790df4_b.jpg" class="center" width="400"></p>
+<p>这类证书叫做：EV 证书。如果你公司名字比较长可能会比较蛋疼，譬如会变成这样：<img src="/images/v2-1ba805724b5968e15e9aad54a58a902c_b.jpg" class="center" width="400"></p>
+<p>在最新版的 Chrome 下已经不显示名字了，只有 Safari 才显示。Chrome 下和普通证书显示一样，只有一个绿色的锁。</p>
+<p>这个证书麻烦在于不支持通配，譬如只能 “twitter.com” 或者 “<a href="http://www.twitter.com" target="_blank" rel="external">http://www.twitter.com</a>” ，而不能 “*.twitter.com”，维护成本特别高。</p>
+<p>所以大家一般都会选择支持 “*.twitter.com” 的 wildcard 证书。或者同时支持 “taobao.com” 和 “alipay.com” 这样的 SAN 证书。</p>
+<h2 id="上全量-CDN-的-HTTPS-啊"><a href="#上全量-CDN-的-HTTPS-啊" class="headerlink" title="上全量 CDN 的 HTTPS 啊"></a>上全量 CDN 的 HTTPS 啊</h2><p>买证书的钱其实还好，服务端的加密解密消耗的服务器其实也还好。最大的头其实来自 CDN，动态内容上了 HTTPS，所有静态内容也要跟着上，都是钱啊贵着呢！去看看 HTTPS 和 HTTP 的价格，差好几倍啊。<br>不然你的页面会变成这样，这特么不是和 HTTP 一毛一样么！甚至还变差了！<br><img src="/images/v2-5a3f6b3025fc6f8b8dbf37b447f3e134_b.jpg" class="center" width="400"></p>
+<h2 id="SNI-支持"><a href="#SNI-支持" class="headerlink" title="SNI 支持"></a>SNI 支持</h2><p>默认情况下，在客户端和服务端建立好连接之后。服务端会把默认的 SSL 证书发过去给客户做 SSL 校验。但是随着服务器性能逐渐变强，一台服务器会部署多个 SSL 证书服务多个站点（CDN 是最典型的）。服务端需要客户端先告知正准备访问的网站域名（Header 中 Host 字段），然后服务端才能发送正确的 SSL 证书信息和客户端来 SSL 握手。</p>
+<p>如果在上之前没有调研过这个东西，上线之后可能会收到一堆 Windows XP 的用户的反馈。国内不乏有大量古董级用户，用着 windows XP + IE6。如果你上了 HTTPS 他们将永远上不去你的网站了。因为 Windows XP 不支持 SNI。如果你只有一个证书，同时只有一个入口，那么你的动态请求就不会有问题。但是像 CDN 这类第三方服务，人家不可能只为你服务（好吧只要你有钱你也是可以的）。</p>
+<h2 id="SSL-加解密"><a href="#SSL-加解密" class="headerlink" title="SSL 加解密"></a>SSL 加解密</h2><p>软件扛 HTTPS 流量现在主要用 HAProxy 或者 Nginx。如果配置正确加上合理的优化，一台 24 核的 HAProxy 是可以轻松扛下 10,000 qps 的量。<br>关于 SSL 的版本，有：SSL 1.0、SSL 2.0、SSL 3.0、 TLS 1.0、TLS 1.1、TLS 1.2。前面三个协议因为发现有漏洞，已经废弃了。HAProxy 和 Nginx 的 SSL Protocol 默认都是 TLS 的三个。</p>
+<hr>
+<p>好了文章终于可以进入正文了！说到 HTTPS，涉及 2 个概念。</p>
+<ul>
+<li><strong>怎么保证我和真实服务端的通讯是安全的。
+  </strong></li>
+<li><strong>怎么证明我的拿到的请求是真实服务端发我的。</strong></li>
+</ul>
+<h2 id="HTTPS-怎么保证通讯安全"><a href="#HTTPS-怎么保证通讯安全" class="headerlink" title="HTTPS 怎么保证通讯安全"></a>HTTPS 怎么保证通讯安全</h2><p>怎么保证我和真实服务端的通讯是安全的呢？这个问题就好像你和你女朋友想聊一些很羞羞的话题不希望别人知道。其实很简单。这个时候就需要用到非对称加密算法了，简单来说就是一个公钥和一个私钥：</p>
+<ul>
+<li>公钥加密的内容私钥可以解密</li>
+<li>私钥解密的内容公钥可以解密</li>
+<li>公钥是公开给每个人的，私钥是只有服务端自己持有</li>
+</ul>
+<p>你拿着私钥，然后把公钥递给你的女朋友。你们每次发送之前都做一次加密就完事了。</p>
+<p>但是你会想到另外一个问题：怎么证明和我聊天的就是我的女朋友呢，或者说你的女朋友怎么知道正在聊天的那个就是你呢？说不定在第一次递交公钥的时候就已经被人冒充拿走了！这怎么行！</p>
+<p>这就是第二个问题：怎么证明我的拿到的请求是真实服务端发我的。聪明的你想到一个办法，你找了一个第三方公正。你和公正说：公正，你也生成一对密钥吧。然后你用你的私钥把我的公钥给加密了。<br>然后你把这个被公正加密过的公钥给了你女朋友，你女朋友会尝试用公正的公钥（公钥都是公开的）去解密，发现解密成功，说明这个公钥真的是你的。就可以安心的聊羞羞话题了。</p>
+<p>所以流程是：服务端（你自己）生成一对密钥，找 CA （公正）让它用私钥把你的公钥加密，然后客户（你女朋友）在访问你的时候尝试用 CA 的公钥解密你的公钥，解密成功表示你是可信任的。</p>
+<p>聪明的你又想到一个问题，如果 CA 的公钥也被冒充了怎么办？感觉进入死循环了。所以，所有浏览器都会内置一系列 CA 公钥。这样就完全隔离了网络了。但是这样也有缺陷，会导致更新 CA 不及时，证书不能实时撤销的问题。<br>而我们经常说到的 GeoTrust，以及国内被黑的很惨的 WoSign 就是 CA 机构。同样，一旦他们的私钥泄漏了，这就意味着这家公司可以做破产清算了，同时很多互联网公司都可能会出现数据泄漏或者账号被窃的风险。</p>
+<h2 id="HTTPS-通讯到底用了多少种算法"><a href="#HTTPS-通讯到底用了多少种算法" class="headerlink" title="HTTPS 通讯到底用了多少种算法"></a>HTTPS 通讯到底用了多少种算法</h2><p>非对称加密算法无非是互联网安全通信最重要的协议之一，奠定了整个互联网安全架构。但是 RSA 算法本身计算量特别大，如果把所有数据都通过 RSA 加密解密会特别消耗计算能力，所以 HTTPS 并不是一直都是用非对称算法的：</p>
+<ul>
+<li>HTTPS 在做 SSL 握手的时候是非对称加密</li>
+<li>握手成功之后使用对称加密传输数据</li>
+<li>同时还用到 Hash 算法校验数据的一致性</li>
+</ul>
+<p>所以前面的举例其实并不妥当，应该是你女朋友和你握手完了之后协商了一个对称密钥，然后用这个对称密钥加密通讯的。</p>
+<h2 id="HTTPS-握手流程"><a href="#HTTPS-握手流程" class="headerlink" title="HTTPS 握手流程"></a>HTTPS 握手流程</h2><p>所有铺垫都已说明，那么，我们来说 SSL 到底是怎么建立的，我们现在只讨论基于 RSA 的加密方式。</p>
+<p>所有的包都被封装为 Record Layer 结构体里面，可以是一个，也可以是多个，这样可以减少包的数量，里面包括：</p>
+<ul>
+<li><p>Content Type：表示这是什么类型的包，握手阶段都是 Handshake</p>
+</li>
+<li><p>Version：表示是用什么 SSL 协议，较新的浏览器都会使用 TLS 1.2</p>
+</li>
+<li><p>Length：包的内容的长度，指的是 Fragment 的长度，不是整个包的长度。</p>
+</li>
+<li><p>Fragment：和包的类型相关，譬如在握手阶段就是 Handshake Protocol 的结构体，连接连接后的传输过程，这里就是 Encrypted Application Data 的结构体。</p>
+</li>
+</ul>
+<p><strong>Client Hello</strong></p>
+<p>在客户端和服务端完成了 TCP 握手建立了连接之后，客户端会发送 Client Hello 包，其中包括 4 个重要的字段需要说明一下：</p>
+<ul>
+<li><p>Random：由时间戳和 28 bytes 的随机数组成，将用于后面生成 Master Secret。</p>
+</li>
+<li><p>SessionID：用来标记是否复用之前的连接。</p>
+</li>
+<li><p>Cipher Suites：用于告知客户端自己支持的 Cipher Suites。可以在服务器上运行</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openssl ciphers -V</div></pre></td></tr></table></figure>
+<p>查看自己电脑支持的 Cipher Suites。</p>
+<p>譬如</p>
+<p>0xC0,0x30 - ECDHE-RSA-AES256-GCM-SHA384 TLSv1.2 Kx=ECDH Au=RSA Enc=AESGCM(256) Mac=AEAD</p>
+<p>表示用 RSA 算法验证证书，用 AES256 加密数据，用 SHA384 验证数据一致性。</p>
+<ul>
+<li>Server Name（扩展）：告知服务端正在访问的是什么域名，因为 SNI 是后面才补充进去 RFC 的，所以放在了扩展字段里面。注意如果你的客户端不支持 SNI，将不会带上这个字段，这个时候服务器就会传回默认的 SSL 证书了。</li>
+</ul>
+<p><strong>Server Hello</strong></p>
+<p>服务端收到客户端发来的 Client Hello 之后，会传回 Server Hello 包，其中包括：</p>
+<ul>
+<li><p>Random：由时间戳和 28 bytes 的随机数组成，将用于后面生成 Master Secret。</p>
+</li>
+<li><p>SessionID：一个 32 bytes 的随机数，如果下次客户端想复用这个连接，在 Client Hello 中带上即可。</p>
+</li>
+<li><p>Cipher Suite：服务端会根据客户端传来的 Cipher Suites 从中选择一个用于加密。</p>
+</li>
+</ul>
+<p><strong>Certificate</strong></p>
+<p>在服务端发送完 Server Hello 之后，会马上继续发一个 2464 bytes 大小的包，里面包括了服务端的公钥。</p>
+<p><strong>Server key Exchange Message &amp; Server Hello Done</strong></p>
+<p>如果发送完 Certificate 之后还需要补充一些其他的信息，譬如加密算法相关的，会额外补充一个 Server key Exchange 的包，最后会统一发送一个 Server Hello Done 的包表示传输结束。</p>
+<p><strong>Verify Certificate and Signatures</strong></p>
+<p>客户端收到服务端发来的证书文件之后，必须检验：</p>
+<ul>
+<li>证书的 Common Name 是否符合我们访问的域名，如果不符合，会弹出警告框让用户选择是否继续</li>
+<li>证书的时间，不能早于证书上的 “not before”，也不能晚于 “not after”</li>
+<li>使用 CA 的公钥验证服务端公钥是未被篡改的，同样，如果发现 CA 校验不正确，浏览器也会弹出警告</li>
+</ul>
+<p>验证过程涉及到 RSA 算法，如果感兴趣可以看阮一峰的这篇文章：<a href="http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html" target="_blank" rel="external">RSA算法原理（一） - 阮一峰的网络日志</a></p>
+<p><strong>Client Key Exchange Message</strong></p>
+<p>客户端在验证服务端发来的证书是可靠的之后，会生成一个 48 bytes 的随机数，我们称之为 Pre-Master Secret。然后使用服务端的公钥对这个 Pre-Master Secret 加密，传回服务端。不同的加密方法可能会加上位数填充等手段增加其安全性。</p>
+<p><strong>Change Cipher Spec</strong></p>
+<p>这是客户端发送的最后一个明文包，告诉服务端我们之后所有的请求都会通过协商好的加密方法进行通讯。同样，服务端也会传回一个 Change Cipher Spec 告知客户端收到了。这里有一点注意，这个 Change Cipher Spec 是可以和前面的 Client Key Exchange Message，或者其他包共用同一个 TCP 包的。SSL Record Layer 里面也允许这样做，而且大部分浏览器也是这样做的，可以有效减少 TCP 包的包量。</p>
+<p><strong>Master Secret</strong></p>
+<p>双方并不是只依赖 Pre-Master Secret 来加密解密传输数据，最后会生成一个 Master Secret 用来加解密，函数为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">master_secret = PRF(pre_master_secret, </div><div class="line">                    &quot;master secret&quot;, </div><div class="line">                    ClientHello.random + ServerHello.random)</div><div class="line">[0..47];</div></pre></td></tr></table></figure>
+<p>这里终于用到了最开始提到的两个 random。取前面 48 bytes，后面全部截断。</p>
+<p>剩下的就是用对称算法对内容进行加密了，部分算法涉及到生成多个 key pair，在此就不展开了，想了解可以看这里：<a href="https://tools.ietf.org/html/rfc2246%23page-21" target="_blank" rel="external">The TLS Protocol Version 1.0</a>。</p>
+<p>同样在加密之后，会对内容做一次 HASH，譬如这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">verify_data = PRF(master_secret, &quot;client finished&quot;, MD5(handshake_messages) + SHA-1(handshake_messages) ) </div><div class="line">[12]</div></pre></td></tr></table></figure>
+<p>这里假设使用的是 MD5 的校验方法。</p>
+<p><strong>Application Layer</strong></p>
+<p>恭喜你，你终于完成了 SSL 握手，进入了应用层。</p>
+<p><strong>汇总</strong></p>
+<p>最后我们来看一看抓包的截图</p>
+<img src="/images/v2-265cdfc7f18e1884b996568a7038a4cb_b.jpg" class="center" width="400">
+<h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><p>如果大家对 HTTPS 希望了解的更深，可以看看这篇文章：<a href="http://www.moserware.com/2009/06/first-few-milliseconds-of-https.html" target="_blank" rel="external">The First Few Milliseconds of an HTTPS Connection</a> 非常详细的介绍了整个过程。文章结尾还有一个小程序描述整个 SSL 握手的过程。</p>
+<hr>
+<p>参考文章：</p>
+<ol>
+<li><p><a href="https://tools.ietf.org/html/rfc2246" target="_blank" rel="external">The TLS Protocol Version 1.0</a></p>
+</li>
+<li><p><a href="https://www.ietf.org/rfc/rfc3546.txt" target="_blank" rel="external">Transport Layer Security (TLS) Extensions</a></p>
+</li>
+<li><p><a href="http://www.moserware.com/2009/06/first-few-milliseconds-of-https.html" target="_blank" rel="external">The First Few Milliseconds of an HTTPS Connection</a>https:</p>
+</li>
+<li><p><a href="http://blog.cluui.com/understanding-ssl-certificates-trust-and-verification/" target="_blank" rel="external">Understanding SSL\HTTPS</a></p>
+</li>
+<li><p><a href="http://albertx.mx/blog/https-handshake/" target="_blank" rel="external">HTTPS and the TLS handshake protocol.</a></p>
+</li>
+<li><p><a href="http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html" target="_blank" rel="external">RSA算法原理（一） - 阮一峰的网络日志</a></p>
+</li>
+<li><p><a href="http://www.ruanyifeng.com/blog/2013/07/rsa_algorithm_part_two.html" target="_blank" rel="external">RSA算法原理（二） - 阮一峰的网络日志</a></p>
+</li>
+</ol>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/security/">security</a>
+    </span>
+    
+
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2017 Yang
+    
+  </p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>

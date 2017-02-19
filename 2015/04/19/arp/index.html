@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ARP 广播拿到错误 MAC 地址 | Yang&#39;s Blog | for anything.</title>
+
+  
+  <meta name="author" content="Yang">
+  
+
+  
+  <meta name="description" content="线上服务器有时候会无缘无故发生 Zabbix Server 误报机器 Zabbix Agent 不存活的情况，而且发生的非常没有规律。但是过一段之后之后自然就好了。服务也没有各种异常发生。机器这段时间也并没有做过任何改动，甚至都没有登陆过。">
+  
+
+  
+  
+  <meta name="keywords" content="">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="ARP 广播拿到错误 MAC 地址"/>
+
+  <meta property="og:site_name" content="Yang&#39;s Blog"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Yang&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">Yang&#39;s Blog</a>
+    </h1>
+    <p class="site-description">for anything.</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>ARP 广播拿到错误 MAC 地址</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2015/04/19/arp/" rel="bookmark">
+        <time class="entry-date published" datetime="2015-04-19T11:48:10.000Z">
+          2015-04-19
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>线上服务器有时候会无缘无故发生 Zabbix Server 误报机器 Zabbix Agent 不存活的情况，而且发生的非常没有规律。但是过一段之后之后自然就好了。服务也没有各种异常发生。机器这段时间也并没有做过任何改动，甚至都没有登陆过。</p>
+<a id="more"></a>
+<p>报警的机器一般都是有2块网卡的，eth0 接的内网IP，eth1 接公网IP。网络配置如下：</p>
+<pre><code>eth0: 10.211.55.2
+
+eth1: 220.0.0.2
+</code></pre><p>防火墙基本配置如下：</p>
+<pre><code>iptables -A INPUT -i eth0 -j ACCEPT
+iptables -A INPUT -i eth1 -t tcp --dport 80 -j ACCEPT
+iptables -A INPUT -m state —state  RELATED,ESTABLISHED -j ACCEPT
+iptables -A INPUT -j DROP
+</code></pre><p>防火墙配置主要是让内网全部放行，公网只放行80端口和已建立连接的请求。</p>
+<p>在又一次误报的时候，我尝试登到 Zabbix Server 尝试 telnet 机器的10080端口，发现竟然超时了！但是在其他机器上  telnet 却没有超时。查看 arp 记录。发现在 zabbix 的 arp 表是这样的：</p>
+<pre><code>root@zabbix:~# arp -n
+Address                  HWtype  HWaddress           Flags Mask            Iface
+10.211.55.2              ether   00:1c:42:d3:a6:de   C                     eth0
+</code></pre><p>但是在其他机器上的 arp 表却是这样的：</p>
+<pre><code>root@host:~# arp -n
+Address                  HWtype  HWaddress           Flags Mask            Iface
+10.211.55.2              ether   00:1c:42:00:00:08   C                     eth0
+</code></pre><p>zabbix 的机器竟然拿到错误的 MAC 地址了！</p>
+<p>登陆到 10.211.55.6，查看其 IP：</p>
+<pre><code>root@bug:~# ifconfig
+eth0        Link encap:Ethernet  HWaddr 00:1c:42:00:00:08
+            inet addr:10.211.55.6  Bcast:10.211.55.255  Mask:255.255.255.0
+            ...
+eth1        Link encap:Ethernet  HWaddr 00:1c:42:d3:a6:de
+            inet addr:220.0.0.2  Bcast:220.0.0.255  Mask:255.255.255.0
+            ...
+</code></pre><p>发现 zabbix 的服务期在找 10.211.55.6 这台机器的时候拿到了220.0.0.2的 MAC 地址。可是为什么呢，使用 tcpdump 抓包：</p>
+<pre><code>arp who-has 10.211.55.2 tell 10.211.55.1
+arp reply 10.211.55.2 is-at 00:1c:42:d3:a6:de
+</code></pre><p>是 arp 回应的时候就拿到了一个错误的 MAC 地址。</p>
+<p>但是因为这个 MAC 地址对应的 eth1 网口只开放了80端口，其他端口都是 DROP 掉得。这就解释了为什么无法telnet通10080端口了。</p>
+<p>可是为什么会这样呢。通过查看文档，发现 ARP 的定义是这样的：</p>
+<pre><code>arp_filter - BOOLEAN
+    1 - Allows you to have multiple network interfaces on the same
+    subnet, and have the ARPs for each interface be answered
+    based on whether or not the kernel would route a packet from
+    the ARP&apos;d IP out that interface (therefore you must use source
+    based routing for this to work). In other words it allows control
+    of which cards (usually 1) will respond to an arp request.
+
+    0 - (default) The kernel can respond to arp requests with addresses
+    from other interfaces. This may seem wrong but it usually makes
+    sense, because it increases the chance of successful communication.
+    IP addresses are owned by the complete host on Linux, not by
+    particular interfaces. Only for more complex setups like load-
+    balancing, does this behaviour cause problems.
+
+    arp_filter for the interface will be enabled if at least one of
+    conf/{all,interface}/arp_filter is set to TRUE,
+    it will be disabled otherwise
+</code></pre><p><a href="https://lwn.net/Articles/45386/#arp_filter" target="_blank" rel="external">原文在这里</a></p>
+<p>大概翻译过来就是：当有一个 ARP 广播请求一个 MAC 地址时，本机会查看自己是否拥有这个 IP，只要本机任何端口拥有该IP，就会随机返回一个网口的 MAC 地址。</p>
+<p>具体解释就是：<strong> 机器不管你的请求通过哪个网卡进来，反正请求能进到这台机器，就行了。 </strong></p>
+<p>处理方法有两种：</p>
+<ul>
+<li><p>按照文档的介绍，将 <code>/proc/sys/net/ipv4/conf/all/arp_filter</code> 设为 <code>1</code> 即可。</p>
+</li>
+<li><p>将防火墙设置为以 IP 段划分，不以网口划分。具体如下：</p>
+<pre><code>iptables -A INPUT -s 10.211.55.0/24 -j ACCEPT
+iptables -A INPUT -t tcp --dport 80 -j ACCEPT
+iptables -A INPUT -m state —state  RELATED,ESTABLISHED -j ACCEPT
+iptables -A INPUT -j DROP
+</code></pre></li>
+</ul>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/linux/">linux</a>
+    </span>
+    
+
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2017 Yang
+    
+  </p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>
